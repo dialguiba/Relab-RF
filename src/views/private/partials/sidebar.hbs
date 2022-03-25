@@ -1,0 +1,165 @@
+<div class="sidebar" id="sidebar">
+  <ul class="sidebar-list">
+    <li>
+      <a href="/inicio" class="sidebar-link">
+        <div class="element-list">
+          <i class="fa fa-home fa-2x"></i>
+          <span class="sidebar-text">
+            Inicio
+          </span>
+        </div>
+      </a>
+    </li>
+    <li>
+      <a href="/noticias" class="sidebar-link">
+        <div class="element-list">
+          <i class="fa fa-newspaper fa-2x"></i>
+          <span class="sidebar-text">
+            Noticias
+          </span>
+        </div>
+      </a>
+    </li>
+    {{#if_eq user.0.name_userrol "Alumno"}}
+      {{! <li class="element-list">
+        <a href="/inicio" class="sidebar-link">
+          <i class="fa"></i>
+          <span class="sidebar-text">
+            Laboratorios
+          </span>
+        </a>
+      </li> }}
+      <li>
+        <div class="element-list">
+          <span class="sidebar-title-icon">
+            ⚊
+          </span>
+          <span class="sidebar-text sidebar-title-text">
+            ⚯ Laboratorios ⚯
+          </span>
+        </div>
+      </li>
+      {{#each user}}
+        {{#if id_laboratory}}
+          <li>
+            <a href="/labs/courses/{{id_laboratory}}" class="sidebar-link">
+              <div class="element-list">
+                <div style="width:1.5rem;height:1.5rem;">
+                  <img
+                    src="/img/icons/{{name_icon}}.svg"
+                    style="width:100%;filter: gray;-webkit-filter: grayscale(1);filter:grayscale(1);opacity:.6"
+                  />
+                </div>
+                <span class="sidebar-text">
+                  {{name_laboratory}}
+                </span>
+              </div>
+            </a>
+          </li>
+        {{/if}}
+      {{/each}}
+    {{/if_eq}}
+    {{#if_eq user.0.name_userrol "Profesor"}}
+      {{! <li class="element-list">
+        <a href="/inicio" class="sidebar-link">
+          <i class="fa"></i>
+          <span class="sidebar-text">
+            Laboratorios
+          </span>
+        </a>
+      </li> }}
+      <li>
+        <div class="element-list">
+          <span class="sidebar-title-icon">
+            ⚊
+          </span>
+          <span class="sidebar-text sidebar-title-text">
+            ⚯ Laboratorios ⚯
+          </span>
+        </div>
+      </li>
+      {{#each user}}
+        {{#if id_laboratory}}
+          <li>
+            <a href="/labs/courses/{{id_laboratory}}" class="sidebar-link">
+              <div class="element-list">
+                <div style="width:1.5rem; height:1.5rem">
+                  <img
+                    src="/img/icons/{{name_icon}}.svg"
+                    style="width:100%; filter gray; -webkit-filter: grayscale(1);filter:grayscale(1);opacity:.6"
+                  />
+                </div>
+                <i class="{{icon_laboratory}} fa-2x"></i>
+                <span class="sidebar-text">
+                  {{name_laboratory}}
+                </span>
+              </div>
+            </a>
+          </li>
+        {{/if}}
+      {{/each}}
+    {{/if_eq}}
+    {{#if_eq user.0.name_userrol "Administrador"}}
+      <li>
+        <div class="element-list">
+          <span class="sidebar-title-icon">
+            ⚊
+          </span>
+          <span class="sidebar-text sidebar-title-text">
+            ⚯ Administración ⚯
+          </span>
+        </div>
+      </li>
+      <li>
+        <a href="/admin/registro" class="sidebar-link">
+          <div class="element-list">
+            <i class="fa fa-user-plus fa-2x"></i>
+            <span class="sidebar-text">
+              Registrar Usuarios
+            </span>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="/admin/users" class="sidebar-link">
+          <div class="element-list">
+            <i class="fa fa-users fa-2x"></i>
+            <span class="sidebar-text">
+              Usuarios
+            </span>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="/admin/alumnos" class="sidebar-link">
+          <div class="element-list">
+            <i class="fa fa-user-graduate fa-2x"></i>
+            <span class="sidebar-text">
+              Alumnos
+            </span>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="/admin/laboratories" class="sidebar-link">
+          <div class="element-list">
+            <i class="fa fa-microscope fa-2x"></i>
+            <span class="sidebar-text">
+              Laboratorios
+            </span>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="/admin/equipmentstypes" class="sidebar-link">
+          <div class="element-list">
+            <i class="fa fa-align-center fa-2x"></i>
+            <span class="sidebar-text">
+              Tipos
+            </span>
+          </div>
+        </a>
+      </li>
+    {{/if_eq}}
+  </ul>
+</div>

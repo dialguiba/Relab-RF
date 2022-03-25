@@ -1,0 +1,334 @@
+/* ESTRUCTURA GENERAL DE PÁGINA CURSOS */
+
+.courses-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.courses-breadcrumb {
+  background-color: rgba(28, 25, 22, 0.1);
+  color: rgba(28, 25, 22, 0.7);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+}
+
+.courses-cards {
+  /* background-color: blue; */
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* ESTRUCTURA CONTENIDO CARDS */
+
+.course-card {
+  /*border:solid;
+    background-color: yellow;
+    */
+  flex: 1 0 25%;
+  box-sizing: border-box;
+  max-width: 25%;
+  padding: 5px;
+}
+
+.course-cardImageContainer {
+  background-color: white;
+  height: 60%;
+  border: solid gray thin;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.course-cardImage {
+  background-color: gray;
+  height: 100%;
+  width: 100%;
+  opacity: 0.65;
+
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.course-cardBody {
+  height: 40%;
+  /* background-color:brown; */
+  padding: 6px;
+  box-sizing: border-box;
+  border: solid gray thin;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.course-cardBodyName {
+  margin-right: 4px;
+  font-size: 1.5vw;
+}
+.course-cardBodyScheduleGroup {
+  font-size: 0.8vw;
+  padding: 0.2rem;
+  color: white;
+  font-weight: bold;
+  background-color: rgba(89, 165, 165, 1);
+  border-radius: 5px;
+  margin: 0 4px 0 4px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.course-cardBodyTableGroup {
+  font-size: 0.8vw;
+  color: white;
+  font-weight: bold;
+  background-color: rgba(89, 127, 165, 1);
+  padding: 0.2rem;
+  border-radius: 5px;
+  margin: 0 4px 0 4px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.course-cardBodyDetails {
+  font-weight: bold;
+  color: white;
+  width: fit-content;
+  background-color: rgba(89, 127, 165, 1);
+  padding: 0.2rem;
+  border-radius: 5px;
+  margin: 4px 0 4px 0;
+  font-size: 0.8vw;
+}
+#content-cards {
+  margin: 9px;
+  /* background-color: red; */
+}
+.table-container {
+  background-color: rgba(112, 107, 103, 0.048);
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  border: solid rgba(112, 107, 103, 0.068) thin;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.table-containerHeader {
+  background-color: rgba(112, 107, 103, 0.1);
+  padding: 6px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.machine-cardHeader {
+  background-color: rgba(153, 151, 149, 0.2);
+  border: solid rgba(153, 151, 149, 0.5) thin;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding: 4px;
+}
+.machine-cardBody {
+  background-color: rgba(153, 151, 149, 0.05);
+  border: solid rgba(153, 151, 149, 0.5) thin;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 4px;
+}
+.active-breadCrumb {
+  color: rgba(28, 25, 22, 0.7);
+}
+.inactive-breadCrumb {
+  color: rgba(89, 165, 165, 1);
+}
+.hide-breadCrumb {
+  display: none;
+}
+
+@media (max-width: 1044px) {
+  .course-card {
+    /* border:solid; */
+    /* background-color: yellow; */
+
+    flex: 1 0 50%;
+    box-sizing: border-box;
+    max-width: 50%;
+  }
+
+  .course-cardBody {
+    font-size: 2.5vw;
+  }
+
+  .course-cardBodyName {
+    margin-right: 4px;
+    font-size: 1.5vw;
+  }
+  .course-cardBodyScheduleGroup {
+    font-size: 1vw;
+  }
+  .course-cardBodyTableGroup {
+    font-size: 1vw;
+  }
+  .course-cardBodyDetails {
+    font-size: 1vw;
+  }
+}
+
+@media (max-width: 550px) {
+  .course-card {
+    /* border:solid; */
+
+    /* background-color: yellow; */
+
+    flex: 1 0 100%;
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+
+  .course-cardBody {
+    font-size: 2.5vw;
+  }
+
+  .course-cardBodyName {
+    margin-right: 4px;
+    font-size: 4vw;
+  }
+  .course-cardBodyScheduleGroup {
+    font-size: 2vw;
+  }
+  .course-cardBodyTableGroup {
+    font-size: 2vw;
+  }
+  .course-cardBodyDetails {
+    font-size: 2vw;
+  }
+}
+
+/*######################## TREE ####################*/
+
+/*Now the CSS*/
+
+.tree ul {
+  padding-top: 20px;
+  position: relative;
+
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+}
+
+.tree li {
+  float: left;
+  text-align: center;
+  list-style-type: none;
+  position: relative;
+  padding: 20px 5px 20px 5px;
+
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+}
+
+/*We will use ::before and ::after to draw the connectors*/
+
+.tree li::before,
+.tree li::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 50%;
+  border-top: 1px solid #ccc;
+  width: 50%;
+  height: 20px;
+}
+.tree li::after {
+  right: auto;
+  left: 50%;
+  border-left: 1px solid #ccc;
+}
+
+/*We need to remove left-right connectors from elements without 
+any siblings*/
+.tree li:only-child::after,
+.tree li:only-child::before {
+  display: none;
+}
+
+/*Remove space from the top of single children*/
+.tree li:only-child {
+  padding-top: 0;
+}
+
+/*Remove left connector from first child and 
+right connector from last child*/
+.tree li:first-child::before,
+.tree li:last-child::after {
+  border: 0 none;
+}
+/*Adding back the vertical connector to the last nodes*/
+.tree li:last-child::before {
+  border-right: 1px solid #ccc;
+  border-radius: 0 5px 0 0;
+  -webkit-border-radius: 0 5px 0 0;
+  -moz-border-radius: 0 5px 0 0;
+}
+.tree li:first-child::after {
+  border-radius: 5px 0 0 0;
+  -webkit-border-radius: 5px 0 0 0;
+  -moz-border-radius: 5px 0 0 0;
+}
+
+/*Time to add downward connectors from parents*/
+.tree ul ul::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  border-left: 1px solid #ccc;
+  width: 0;
+  height: 20px;
+}
+
+/* antes era .tree li a */
+.tree li div {
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #666;
+  font-family: arial, verdana, tahoma;
+  font-size: 11px;
+  display: inline-block;
+
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+}
+
+/*Time for some hover effects*/
+/*We will apply the hover effect the the lineage of the element also*/
+.tree li a:hover,
+.tree li a:hover + ul li a {
+  background: #c8e4f8;
+  color: #000;
+  border: 1px solid #94a0b4;
+}
+/*Connector styles on hover*/
+.tree li a:hover + ul li::after,
+.tree li a:hover + ul li::before,
+.tree li a:hover + ul::before,
+.tree li a:hover + ul ul::before {
+  border-color: #94a0b4;
+}
+
+/*Thats all. I hope you enjoyed it.
+Thanks :)*/

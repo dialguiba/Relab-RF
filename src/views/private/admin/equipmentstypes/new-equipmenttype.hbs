@@ -1,0 +1,14 @@
+<tr id="row-table-equipmentstypes-{{idNewEquipmentType}}">
+    <td>
+        <div class="button-transparent">
+            <i id="button-modify-equipmenttype-{{idNewEquipmentType}}" style="color:green" class="far fa-edit"
+                onclick="modifyEquipmentType({{idNewEquipmentType}})"></i>
+        </div>
+        <div class="button-transparent">
+            <i class='bx bx-trash bx-tada-hover iconRed' onclick="deleteEquipmentType({{idNewEquipmentType}})"></i>
+        </div>
+    </td>
+    <td id="name-equipmenttype-{{idNewEquipmentType}}">{{name_equipmenttype}}</td>
+    <td>{{name_connectiontype}}</td>
+    <td style="width:10%"><img style="width:100%" src="/img/equipmentstypes/{{name_imageequipmenttype}}.png " /></td>
+</tr>

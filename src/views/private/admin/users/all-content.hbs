@@ -1,0 +1,66 @@
+<div class="dropdown">
+  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+    <button class="dropdown-item" type="button">
+      Action
+    </button>
+    <button class="dropdown-item" type="button">
+      Another action
+    </button>
+    <button class="dropdown-item" type="button">
+      Something else here
+    </button>
+  </div>
+</div>
+<table class="table table-responsive-md table-hover">
+  <thead>
+    <tr>
+      <th scope="col">
+        #
+      </th>
+      <th scope="col">
+        Nombres
+      </th>
+      <th scope="col">
+        Apellidos
+      </th>
+      <th scope="col">
+        Correo
+      </th>
+      <th scope="col">
+        Tipo
+      </th>
+      <th scope="col">
+        Acciones
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each users}}
+    <tr id="fila_usuario{{id_user}}">
+      <th scope="row">
+        {{counter @index}}
+      </th>
+      <td id="names_user{{id_user}}">
+        {{names_user}}
+      </td>
+      <td id="surnames_user{{id_user}}">
+        {{surnames_user}}
+      </td>
+      <td id="email_user{{id_user}}">
+        {{email_user}}
+      </td>
+      <td>
+        {{name_userrol}}
+      </td>
+      <td>
+        <form method="post" action="/" class="inline" style="display:inline-block">
+          <i style="color:red" class="fas fa-times-circle" onclick="eliminar_usuario({{id_user}})"></i>
+        </form>
+        <i id="boton_modificar{{id_user}}" style="color:green" class="far fa-edit"
+          onclick="modificar_usuario({{id_user}})"></i>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+<script src="/js/utils-adminusuarios.js"></script>

@@ -1,0 +1,40 @@
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li id="nav_cursos" class="breadcrumb-item active" onclick="ir_cursos()">courses</li>
+            <li id="nav_equipos" class="breadcrumb-item invisible">Equipos</li>
+        </ol>
+    </nav>
+    <div id="contenido">
+        <div class="row row-cols-2 row-cols-md-4">
+            {{#each courses}}
+            <div class="col mb-4" onclick="ir_mesa({{id_module}},{{id_enrolled}},{{id_laboratory}})">
+                <div class="card h-100">
+                    <div style="width:100%;height:58%">
+                        <img src="{{img_course}}" style="width:100%;height:100%;opacity: 0.6;" class="card-img-top"
+                            alt="fotocurso">
+                    </div>
+
+                    <div class="card-body ">
+                        <div>
+                            <h5 class="card-title d-inline">{{name_course}}</h5>
+                            <span class="ml-1 badge badge-info d-inline">{{name_schedulegroup}}</span>
+                            <span class="badge badge-primary d-inline">{{name_module}}</span>
+                        </div>
+                        <div class="mb-4">
+                            {{#each ../detallesCursos}}
+                            {{#if_eq ../this.id_course id}}
+                            <div>
+                                <span class="ml-1 badge badge-info ">{{day_dayandtime}}
+                                    {{starttime_dayandtime}} {{endtime_dayandtime}}</span>
+                            </div>
+                            {{/if_eq}}
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>

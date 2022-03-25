@@ -1,0 +1,20 @@
+<tr id="row-table-equipments-{{idNewEquipment}}">
+    <td>
+        <div class="button-transparent">
+            <i id="button-modify-equipment-{{idNewEquipment}}" style="color:green" class="far fa-edit"
+                onclick="modifyEquipment({{idNewEquipment}})"></i>
+        </div>
+        <div class="button-transparent">
+            <i class='bx bx-trash bx-tada-hover iconRed' onclick="deleteEquipment({{idNewEquipment}})"></i>
+            </button>
+        </div>
+    </td>
+    <td id="name-equipment-{{idNewEquipment}}" class="align-middle">{{nameEquipment}}</td>
+    <td id="ip-equipment-{{idNewEquipment}}" class="align-middle">{{ipEquipment}}</td>
+    <td id="port-equipment-{{idNewEquipment}}" class="align-middle">{{portEquipment}}</td>
+    <td class="align-middle">{{nameEquipmentType}}</td>
+    <td id="password-equipment-{{idNewEquipment}}" class="align-middle">{{passwordEquipment}}</td>
+    <td>
+        {{wsRouteEquipment}}
+    </td>
+</tr>

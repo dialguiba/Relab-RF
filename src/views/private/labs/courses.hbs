@@ -1,0 +1,35 @@
+<link href="/css/styles-courses.css" rel="stylesheet">
+
+<div class="courses-container">
+    <div class="courses-breadcrumb">
+        <span id="nav-courses" class="active-breadCrumb" onclick="ir_cursos()">Cursos</span>
+        <span id="nav-equipments" class="hide-breadCrumb">/ Equipos</span>
+    </div>
+
+    <div id="content-cards">
+        <div class="courses-cards">
+            {{#each courses}}
+            <div class="course-card"
+                onclick="ir_mesa({{id_module}},{{id_enrolled}},{{id_laboratory}},{{id_schedulegroup}},{{id_course}})">
+                <div class="course-cardImageContainer">
+                    <img src="/img/courses/{{name_imagecourse}}.jpg" class="course-cardImage"></img>
+                </div>
+                <div class="course-cardBody">
+                    <span class="course-cardBodyName">{{name_course}}</span>
+                    <span class="course-cardBodyScheduleGroup" style="">{{name_schedulegroup}}</span>
+                    <span class="course-cardBodyTableGroup">{{name_module}}</span>
+                    {{#each ../detallesCursos}}
+                    {{#if_eq ../this.id_course id}}
+                    <div class="course-cardBodyDetails">{{day_schedule}} {{starttime_schedule}}
+                        {{endtime_schedule}}</div>
+                    {{/if_eq}}
+                    {{/each}}
+                </div>
+            </div>
+            {{/each}}
+
+        </div>
+    </div>
+</div>
+
+<script src="/js/utils-labscursos.js"></script>

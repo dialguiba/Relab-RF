@@ -1,0 +1,101 @@
+<tr class="rows-table-laboratories" id="row-table-laboratories-{{idNewLaboratory}}">
+    <td>{{numberRow}}</td>
+    <td>
+        <div class="button-transparent">
+            <i id="button-modify-laboratory-{{idNewLaboratory}}" style="color:green" class="far fa-edit"
+                onclick="modifyLaboratory({{idNewLaboratory}})"></i>
+        </div>
+        <div class="button-transparent">
+            <i class='bx bx-trash bx-tada-hover iconRed' onclick="deleteLaboratory({{idNewLaboratory}})"></i>
+        </div>
+    </td>
+    <td id="name-laboratory-{{idNewLaboratory}}">{{nameLaboratory}}</td>
+    <td style="width:1vw; max-width:1vw">
+        <img style="width:100%" src="/img/icons/{{name_icon}}.svg" />
+    </td>
+    <td>
+        <div class="container-elements-centered">
+            <div class="button-primary" onclick="collapseTable('table-courses-'+{{idNewLaboratory}})">
+                <i class="fas fa-eye"></i> Cursos
+            </div>
+            <div class="button-primary" onclick="collapseTable('table-modules-'+{{idNewLaboratory}})">
+                <i class="fas fa-eye"></i> Mesas
+            </div>
+            <div class="button-primary" onclick="collapseCard('card-add-course-'+{{idNewLaboratory}})">
+                <i class="fas fa-plus-circle"></i> Curso</button>
+            </div>
+            <div class="button-primary" onclick="collapseCard('card-add-module-'+{{idNewLaboratory}})">
+                <i class="fas fa-plus-circle"></i> Mesa</button>
+            </div>
+        </div>
+
+        <div class="card-form" id="card-add-course-{{idNewLaboratory}}">
+            <div class="box">
+                <a class="button" href="#popup-images-courses" onclick="showPopupSelectImageCourse({{idNewLaboratory}},event)">Seleccionar imagen</a>
+            </div>
+            {{!-- SELECTOR IMAGE --}}
+            <div id="popup-images-course-{{idNewLaboratory}}" class="overlay popup-hide" >
+                <div class="popup">
+                    <h2>Seleccione una imagen:</h2>
+                    <a class="close" href="#" onclick="closePopupSelectImageCourse({{idNewLaboratory}})">&times;</a>
+                    <div class="content">                
+                        <div class="images-selector" id="selector-image-course-{{idNewLaboratory}}">
+                            {{#each imagescourses}} 
+                            <div onclick="closePopupSelectImageCourse({{../idNewLaboratory}})">                                    
+                                <input type="radio" id="{{name_imagecourse}}" name="radioName" value={{id}}>
+                                <label for="{{name_imagecourse}}" class="img-card" style="background-image:url(/img/courses/{{name_imagecourse}}.jpg)"></label>                          
+                            </div>                       
+                            {{/each}}  
+                        </div>   
+                    </div>
+                </div>
+            </div>   
+            <input class="card-input" type="text" placeholder="Nombre del Curso" id="input-name-course-{{idNewLaboratory}}">
+            <button class="button-primary" onclick="createCourse({{idNewLaboratory}})">Crear Curso</button>
+        </div>
+
+        <div class="card-form" id="card-add-module-{{idNewLaboratory}}">
+            <input class="card-input" required type="text" placeholder="Nombre de la Mesa" id="input-name-module-{{idNewLaboratory}}">
+            <button class="button-primary" onclick="createModule({{idNewLaboratory}})">Crear Mesa</button>
+        </div>
+    </td>
+</tr>
+
+{{!-- courses --}}
+<tr class="rows-table-courses table-hidden" id="table-courses-{{idNewLaboratory}}">
+    <td colspan="999">
+        <div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Curso</th>
+                        <th style="text-align: center;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="body-table-courses-{{idNewLaboratory}}">
+                </tbody>
+            </table>
+        </div>
+    </td>
+</tr>
+
+
+{{!-- modules --}}
+<tr class="table-modules-{{id}} table-hidden" id="table-modules-{{idNewLaboratory}}">
+    <td colspan="999">
+        <div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Mesa</th>
+                        <th style="text-align: center;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="body-table-modules-{{idNewLaboratory}}">
+                </tbody>
+            </table>
+        </div>
+    </td>
+</tr>

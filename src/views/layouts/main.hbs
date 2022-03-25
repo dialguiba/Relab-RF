@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relab</title>
+
+  {{!-- @@INICIO@@ FAVICON --}}
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/img/favicon/site.webmanifest">
+  <link rel="mask-icon" href="/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="/img/favicon/favicon.ico">
+  <meta name="msapplication-TileColor" content="#2b5797">
+  <meta name="msapplication-config" content="/img/favicon/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+
+  {{!-- @@FIN@@ FAVICON --}}
+
+  {{!-- @@INICIO@@ NOVNC --}}
+  {{!--
+  <link rel="stylesheet" href="/noVNC/app/styles/base.css"> --}}
+  {{!-- @@FIN@@ NOVNC --}}
+
+  {{!-- @@INICIO@@ FONTAWESOME --}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"
+    integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
+  {{!-- @@FIN@@ FONTAWESOME --}}
+
+  {{!-- @@INICIO@@ GOOGLE FONTS --}}
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  {{!-- @@FIN@@ GOOGLE FONTS --}}
+
+  {{!-- @@INICIO@@ BOOTSTRAP --}}
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+  {{!-- @@FIN@@ BOOTSTRAP --}}
+
+  {{!-- @@INICIO@@ JQUERY-UI PARA BUSCADOR DE ALUMNOS --}}
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  {{!-- @@FIN@@ FONTAWESOME --}}
+
+  {{!-- @@INICIO@@ BOOTSTRAP FULL --}}
+  {{!--
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.css"> --}}
+  {{!-- @@FIN@@ BOOTSTRAP FULL --}}
+
+  <!-- Bootstrap core CSS -->
+
+  <!-- Material Design Bootstrap -->
+  {{!--
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet"> --}}
+  <!-- Para Buscador de Alumnos -->
+
+  {{!-- BoxIcons --}}
+  <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
+  {{!-- @@INICIO@@ OWN GENERAL STYLES --}}
+  <link rel="stylesheet" href="/css/general-styles.css">
+  {{#if user}}
+  <link rel="stylesheet" href="/css/styles2.css">
+  {{else}}
+  <link rel="stylesheet" href="/css/public-styles.css">
+  <link rel="stylesheet" href="/css/bootstrap-float-label.css">
+  {{/if}}
+  {{!-- @@FIN@@ OWN GENERAL STYLES --}}
+  <!-- JQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  {{!-- <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style> --}}
+</head>
+
+<body>
+
+  {{!-- @INICIO@ PRIVADO (UNA VEZ LOGUEADO) --}}
+  {{#if user}}
+  {{> navigation}}
+
+  {{>sidebar}}
+
+  <div class="wrapper">
+    <div class="content">
+      <div id="message"></div>
+
+      {{{ body }}}
+    </div>
+    <div class="footer">
+      {{> footer}}
+    </div>
+
+  </div>
+
+  {{!-- @FIN@ PRIVADO (UNA VEZ LOGUEADO) --}}
+
+
+  {{!-- @INICIO@ PÚBLICO (SIN HABERSE LOGUEADO) --}}
+
+  {{else}}
+  {{{ body }}}
+  {{/if}}
+
+  {{!-- @FIN@ PÚBLICO (SIN HABERSE LOGUEADO) --}}
+
+
+
+
+  <!-- Bootstrap tooltips -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+  {{!--
+  <script type="text/javascript" src="/js/bootstrap-clockpicker.min.js"></script> --}}
+
+
+
+  {{!--
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> --}}
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+    integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+  {{!-- SCRIPTS --}}
+  {{#if user}}
+  <script src="/js/utils.js"></script>
+  {{else}}
+  <script src="/js/public-utils.js"></script>
+  {{/if}}
+
+</body>
+
+</html>

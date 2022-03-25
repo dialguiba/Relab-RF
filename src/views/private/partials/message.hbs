@@ -1,0 +1,23 @@
+{{!-- prueba --}}
+{{#if info}}
+<div class="alert alert-info">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+  <strong>Info: </strong>{{info}}
+</div>
+{{/if}}
+
+{{#if success}}
+<div class="alert alert-success">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+  <strong>Success: </strong>{{success}}
+</div>
+{{/if}}
+
+
+{{!-- POR USAR.. --}}
+{{#if error}}
+<div class="alert alert-error">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+  <strong>Error: </strong>{{error}}
+</div>
+{{/if}}

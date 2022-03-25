@@ -1,0 +1,114 @@
+<tr class="rows-table-courses" id="row-table-courses-{{idNewCourse}}">
+    <td>
+        <div class="button-transparent">
+            <i id="button-modify-course-{{idNewCourse}}" style="color:green" class="far fa-edit"
+                onclick="modifyCourse({{idNewCourse}})"></i>
+        </div>
+        <div class="button-transparent">
+            <i class='bx bx-trash bx-tada-hover iconRed' onclick="deleteCourse({{idNewCourse}})"></i>
+        </div>
+    </td>
+    <td id="name-course-{{idNewCourse}}">{{nameCourse}}</td>
+    <td>
+        <div class="button-transparent">
+            <i onclick="showPopupImageCourse({{idNewCourse}},event)" class="fas fa-image"></i>
+        </div>
+        {{!-- MODAL VER IMAGEN DE CURSO --}}
+        <div id="popup-image-course-{{idNewCourse}}" class="overlay popup-hide" >
+            <div class="popup">
+                <h2>Imagen de Curso:</h2>
+                <a class="close" href="#" onclick="closePopupImageCourse({{idNewCourse}})">&times;</a>
+                <div class="content" >                
+                        <img style="width:100%; background-size:cover" src="/img/courses/{{name_imagecourse}}.jpg" />
+                </div>
+            </div>
+        </div>  
+    </td>
+    <td>
+        <div class="container-elements-centered">
+            <div class="button-primary" onclick="collapseTable('table-enrolleds-'+{{idNewCourse}})">
+                <i class="fas fa-eye"></i> Usuarios
+            </div>
+            <div class="button-primary" onclick="collapseTable('table-schedulesgroups-'+{{idNewCourse}})">
+                <i class="fas fa-eye"></i> Grupos Horarios
+            </div>
+            <div class="button-primary" onclick="collapseCard('card-add-user-'+{{idNewCourse}})">
+                <i class="fas fa-plus-circle"></i> Usuario
+            </div>
+            <div class="button-primary" onclick="collapseCard('card-add-schedulegroup-'+{{idNewCourse}})">
+                <i class="fas fa-plus-circle"></i> Grupo Horario
+            </div>
+        </div>
+
+        <div class="card-form" id="card-add-user-{{idNewCourse}}">
+
+            <input class="card-input" id="input-name-enrolled-{{idNewCourse}}" type="text" placeholder="Nombre del Alumno"
+                onkeydown="suggestUsers(this.id)" onfocus="obtainUsers({{idNewCourse}})">
+
+            <select id="selector-module-enrolled-{{idNewCourse}}" class="selector-module-enrolled-{{idLaboratory}}">
+                <option selected value="0">Mesa</option>
+                {{#each modules}}
+                <option value={{id}}>{{name_module}}</option>
+                {{/each}}
+            </select>
+
+            <select id="selector-schedulegroup-enrolled-{{idNewCourse}}">
+                <option selected value="0">Grupo Horario</option>
+                {{#each schedulesgroups}}
+                <option value={{id}}>{{name_schedulegroup}}
+                </option>
+                {{/each}}
+            </select>
+            <div class="button-primary" onclick="enrollUser({{idNewCourse}})">
+                Añadir Usuario
+            </div>
+        </div>
+
+
+        <div class="card-form" id="card-add-schedulegroup-{{idNewCourse}}">
+            <input class="card-input" type="text" placeholder="Nombre del Grupo Horario" id="input-name-schedulegroup-{{idNewCourse}}">
+            <div class="button-primary" onclick="createScheduleGroup({{idNewCourse}})">
+                Añadir Grupo Horario
+            </div>
+        </div>
+    </td>
+</tr>
+
+<tr class="table-enrolleds-{{idNewCourse}} table-hidden" id="table-enrolleds-{{idNewCourse}}">
+    <td colspan="999">
+        <div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Código</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Mesa</th>
+                        <th>Grupo Horario</th>
+                    </tr>
+                </thead>
+                <tbody id="body-table-enrolleds-{{idNewCourse}}">
+                </tbody>
+            </table>
+        </div>
+    </td>
+</tr>
+
+<tr class="table-schedulesgroups-{{idNewCourse}} table-hidden" id="table-schedulesgroups-{{idNewCourse}}">
+    <td colspan="999">
+        <div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Grupo Horario</th>
+                        <th style="text-align: center;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="body-table-schedulesgroups-{{idNewCourse}}">
+                </tbody>
+            </table>
+        </div>
+    </td>
+</tr>

@@ -1,0 +1,85 @@
+{{!-- not first --}}
+{{#each modules}}
+<div class="module-card">
+    <div class="title-module-card">
+        <i class='bx bx-vector'></i> Mesa: {{name_module}}
+    </div>
+    <div style="height:fit-content;">
+        <div style="display:flex; justify-content:center; align-items:center;height:fit-content;">
+            <div class="tree">
+                <ul>
+                    <li>
+                        <b>
+                            <div><a href="#">{{name_module}}</a></div>
+                        </b>
+                        <ul>
+                            {{#each ../equipments}}
+                            {{#if_eq ../this.id id_module}}
+                            <li>
+                                <div>
+                                    <a
+                                        href="/labs/functionality?name_connectiontype={{name_connectiontype}}&id_enrolled={{../../id_enrolled}}&id_equipment={{id}}"><img
+                                            src="/img/equipmentstypes/{{name_imageequipmenttype}}.png"
+                                            alt="{{name_equipmenttype}}" height="80" width="auto" />
+                                        <p>{{name_equipment}}</p>
+                                    </a>
+                                    {{#if ../../isProfesor}}
+                                    <label for="selector-control-equipment-{{id}}">Control:</label>
+                                    {{#if_eq id_enrolled null}}
+                                    <select onchange="setUserControl(this.value,{{id}})">
+                                        {{else}}
+                                        <select onchange="updateUserControl(this.value,{{id_enrolled}},{{id}})">
+                                            {{/if_eq}}
+                                            <option value="none" selected disabled="disabled">Seleccionar</option>
+                                            {{#each ../../users}}
+                                            {{#if_eq ../../this.id id_module}}
+                                            {{#if_eq ../this.id_enrolled id_enrolled}}
+                                            <option value={{id_enrolled}} selected>{{names_user}} {{surnames_user}}
+                                            </option>
+                                            {{else}}
+                                            <option value={{id_enrolled}}>{{names_user}} {{surnames_user}}</option>
+                                            {{/if_eq}}
+                                            {{/if_eq}}
+                                            {{/each}}
+                                        </select>
+                                        {{else}}
+                                        {{#if_eq id_enrolled null}}
+                                        Control:No Seleccionado
+                                        {{else}}
+                                        {{#each ../../users}}
+                                        {{#if_eq ../../this.id id_module}}
+                                        {{#if_eq ../this.id_enrolled id_enrolled}}
+                                        Control: {{names_user}} {{surnames_user}}
+                                        {{/if_eq}}
+                                        {{/if_eq}}
+                                        {{/each}}
+                                        {{/if_eq}}
+                                        {{/if}}
+
+                                </div>
+                            </li>
+                            {{/if_eq}}
+                            {{/each}}
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="users-module-card">
+        <p>Usuarios:</p>
+        <ul style="list-style-type: none;">
+
+            {{#each ../users}}
+            {{#if_eq ../this.id id_module}}
+            <li>
+                {{#if_eq name_userrol "Alumno"}}<i class="fas fa-user"></i>{{/if_eq}}
+                {{#if_eq name_userrol "Profesor"}}<i class="fas fa-user-tie"></i>{{/if_eq}}
+                {{names_user}} {{surnames_user}}
+            </li>
+            {{/if_eq}}
+            {{/each}}
+        </ul>
+    </div>
+</div>
+{{/each}}

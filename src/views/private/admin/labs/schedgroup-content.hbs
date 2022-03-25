@@ -1,0 +1,79 @@
+<tr id="row-table-schedulesgroups-{{id_newschedulegroup}}">
+    <td>
+        <div class="button-transparent">
+            <i id="button-modify-schedulegroup-{{id_newschedulegroup}}" style="color:green" class="far fa-edit"
+                onclick="modifyScheduleGroup({{id_newschedulegroup}})"></i>
+        </div>
+        <div class="button-transparent">
+            <i class='bx bx-trash bx-tada-hover iconRed' onclick="deleteScheduleGroup({{id_newschedulegroup}})"></i>
+        </div>
+    </td>
+    <td id="name-schedulegroup-{{id_newschedulegroup}}">{{name_schedulegroup}}</td>
+    <td>
+        <div class="container-elements-centered">
+            <div class="button-primary" onclick="collapseTable('table-schedules-'+{{id_newschedulegroup}})">
+                <i class="fas fa-eye"></i> Horario(s)
+            </div>
+            <div class="button-primary" onclick="collapseCard('card-add-schedule-'+{{id_newschedulegroup}})">
+                <i class="fas fa-plus-circle"></i> Horario</button>
+            </div>
+        </div>
+        <div class="card-form" id="card-add-schedule-{{id_newschedulegroup}}">
+            <select id="selector-day-schedule-{{id_newschedulegroup}}">
+                <option selected value="0">Día
+                </option>
+                <option value="Lunes">Lunes
+                </option>
+                <option value="Martes">Martes
+                </option>
+                <option value="Miércoles">Miércoles
+                </option>
+                <option value="Jueves">Jueves
+                </option>
+                <option value="Viernes">Viernes
+                </option>
+                <option value="Sábado">Sábado
+                </option>
+                <option value="Domingo">Domingo
+                </option>
+            </select>
+
+            <div class="clockpicker" placement="bottom" data-autoclose="true"
+                id="horaInicioSelector{{id_newschedulegroup}}">
+                <label for="horaInicioSelector{{id_newschedulegroup}}">Hora
+                    Inicio</label>
+                <input class="card-input" name="horainicio" type="text" value="00:00"
+                    id="input-starttime-schedule-{{id_newschedulegroup}}">
+            </div>
+
+            <div class="clockpicker" placement="bottom" data-autoclose="true"
+                id="horaFinSelector{{id_newschedulegroup}}">
+                <label for="horaFinSelector{{id_newschedulegroup}}">Hora
+                    Fin</label>
+                <input class="card-input" name="horafin" type="text" value="00:00" id="input-endtime-schedule-{{id_newschedulegroup}}">
+            </div>
+            <div class="button-primary" onclick="createSchedule({{id_newschedulegroup}})">
+                Añadir Horario
+            </div>
+
+        </div>
+    </td>
+</tr>
+<tr class="table-hidden table-schedules-{{id_newschedulegroup}}" id="table-schedules-{{id_newschedulegroup}}">
+    <td colspan="999">
+        <div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Dia</th>
+                        <th>Hora Inicio</th>
+                        <th>Hora Fin</th>                       
+                    </tr>
+                </thead>
+                <tbody id="body-table-schedules-{{id_newschedulegroup}}">
+                </tbody>
+            </table>
+        </div>
+    </td>
+</tr>

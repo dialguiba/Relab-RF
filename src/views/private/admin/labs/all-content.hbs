@@ -1,0 +1,526 @@
+<link href='/css/bootstrap-clockpicker.min.css' rel='stylesheet'>
+<link href='/css/styles-admin.css' rel='stylesheet'>
+
+<div>
+    <div>
+        <div id="card-add-laboratory">                  
+            <button id="card-button-select-iconlaboratory" class="button-primary" onclick="openPopupIconLaboratory()"><i class='bx bx-image-add'></i></button>
+            <input type="text" placeholder="Nombre del Laboratorio" id="input-name-laboratory" class="card-input">                             
+            <button class="button-primary" onclick="createLaboratory()">Añadir Laboratorio</button>
+        </div>
+
+        <div id="popup-icons-laboratory" class="overlay popup-hide" >
+            <div class="popup">
+                <h2>Seleccione un icono:</h2>
+                <a class="close" href="#" onclick="closePopupIconLaboratory()">&times;</a>
+                <div class="content" >                
+                    <div class="icons-selector" id="selector-icon-laboratory">
+                        {{#each icons}} 
+                        <div onclick="closePopupIconLaboratory()">                                    
+                            <input type="radio" id="{{name_icon}}" name="radioName" value={{id}}>
+                            <label for="{{name_icon}}" class="icon-card" style="background-image:url(/img/icons/{{name_icon}}.svg)"></label>                          
+                        </div>                       
+                        {{/each}}  
+                    </div>   
+                </div>
+            </div>
+        </div>        
+    </div>
+    
+    <div>
+          <table class="table table-responsive-md table-hover" id="table-laboratories">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th></th>
+                    <th>Laboratorio</th>
+                    <th>Icono</th>
+                    <th style="text-align: center;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="body-table-laboratories">
+                {{#each laboratories}}
+                <tr class="rows-table-laboratories" id="row-table-laboratories-{{id}}">
+                    <td>{{counter @index}}</td>
+                    <td>
+                        <div class="button-transparent">
+                            <i id="button-modify-laboratory-{{id}}" style="color:green" class="far fa-edit"
+                                onclick="modifyLaboratory({{id}})"></i>
+                        </div>
+                        <div class="button-transparent">
+                            <i class='bx bx-trash bx-tada-hover iconRed' onclick="deleteLaboratory({{id}})"></i>
+                        </div>
+                    </td>
+                    <td id="name-laboratory-{{id}}">{{name_laboratory}}</td>
+                    <td style="width:1vw; max-width:1vw">
+                        <img style="width:100%; max-width:100%" src="/img/icons/{{name_icon}}.svg" />
+                    </td>
+                    <td>
+                        <div class="container-elements-centered">
+                            <button class="button-primary" onclick="collapseTable('table-courses-'+{{id}})">
+                                <i class="fas fa-eye"></i> Cursos
+                            </button>
+                            <button class="button-primary" onclick="collapseTable('table-modules-'+{{id}})">
+                                <i class="fas fa-eye"></i> Mesas
+                            </button>
+                            <button class="button-primary" onclick="collapseCard('card-add-course-'+{{id}})">
+                                <i class="fas fa-plus-circle"></i> Curso
+                            </button>
+                            <button class="button-primary" onclick="collapseCard('card-add-module-'+{{id}})">
+                                <i class="fas fa-plus-circle"></i> Mesa
+                            </button>
+                        </div>
+
+                        <div class="card-form" id="card-add-course-{{id}}">                        
+                            <div>
+                                <button class="button-primary" href="#popup-images-courses" onclick="showPopupSelectImageCourse({{id}},event)"><i class='bx bx-image-add'></i></button>
+                            </div>
+                            {{!-- SELECTOR IMAGE --}}
+                            <div id="popup-images-course-{{id}}" class="overlay popup-hide" >
+                                <div class="popup">
+                                    <h2>Seleccione una imagen:</h2>
+                                    <a class="close" href="#" onclick="closePopupSelectImageCourse({{id}})">&times;</a>
+                                    <div class="content">                
+                                        <div class="images-selector" id="selector-image-course-{{id}}">
+                                            {{#each ../imagescourses}} 
+                                            <div onclick="closePopupSelectImageCourse({{../id}})">                                    
+                                                <input type="radio" id="{{name_imagecourse}}" name="radioName" value={{id}} >
+                                                <label for="{{name_imagecourse}}" class="img-card" style="background-image:url(/img/courses/{{name_imagecourse}}.jpg)"></label>                          
+                                            </div>                       
+                                            {{/each}}  
+                                        </div>   
+                                    </div>
+                                </div>
+                            </div>  
+                            <input type="text" class="card-input" placeholder="Nombre del Curso" id="input-name-course-{{id}}" >                      
+                            <button class="button-primary" onclick="createCourse({{id}})">Crear Curso</button>
+                        </div>
+
+                        <div class="card-form" id="card-add-module-{{id}}">
+                            <input required type="text" placeholder="Nombre de la Mesa" id="input-name-module-{{id}}" class="card-input">
+                            <button class="button-primary" onclick="createModule({{id}})">Crear Mesa</button>
+                        </div>
+
+                    </td>
+                </tr>
+
+                {{!-- courses --}}
+                <tr class="table-hidden" id="table-courses-{{id}}">
+                    <td colspan="999">
+                        <div>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Curso</th>
+                                        <th>Imagen</th>
+                                        <th style="text-align: center;">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="body-table-courses-{{id}}">
+                                    {{#each ../courses}}
+                                    {{#if_eq ../this.id id_laboratory}}
+                                    <tr class="rows-table-courses" id="row-table-courses-{{id}}">
+                                        <td>
+                                            <div class="button-transparent">
+                                                <i id="button-modify-course-{{id}}" style="color:green" class="far fa-edit"
+                                                    onclick="modifyCourse({{id}})"></i>
+                                            </div>
+                                            <div class="button-transparent">
+                                                <i class='bx bx-trash bx-tada-hover iconRed'
+                                                    onclick="deleteCourse({{id}})"></i>
+                                            </div>
+                                        </td>
+                                        <td id="name-course-{{id}}">{{name_course}}</td>
+                                        <td>                                        
+                                            <div class="button-transparent">
+                                                <i onclick="showPopupImageCourse({{id}},event)" class="fas fa-image"></i>
+                                            </div>
+                                            {{!-- MODAL VER IMAGEN DE CURSO --}}
+                                            <div id="popup-image-course-{{id}}" class="overlay popup-hide" >
+                                                <div class="popup">
+                                                    <h2>Imagen de Curso:</h2>
+                                                    <a class="close" href="#" onclick="closePopupImageCourse({{id}})">&times;</a>
+                                                    <div class="content" >                
+                                                        <img style="width:100%; background-size:cover" src="/img/courses/{{name_imagecourse}}.jpg" />
+                                                    </div>
+                                                </div>
+                                            </div>  
+                                        </td>
+                                        <td>
+                                            <div class="container-elements-centered">
+                                                <div class="button-primary" onclick="collapseTable('table-enrolleds-'+{{id}})">
+                                                    <i class="fas fa-eye"></i> Usuarios
+                                                </div>
+                                                <div class="button-primary"
+                                                    onclick="collapseTable('table-schedulesgroups-'+{{id}})">
+                                                    <i class="fas fa-eye"></i> Grupos Horarios
+                                                </div>
+                                                <div class="button-primary" onclick="collapseCard('card-add-user-'+{{id}})">
+                                                    <i class="fas fa-plus-circle"></i> Usuario
+                                                </div>
+                                                <div class="button-primary"
+                                                    onclick="collapseCard('card-add-schedulegroup-'+{{id}})">
+                                                    <i class="fas fa-plus-circle"></i> Grupo Horario
+                                                </div>
+                                            </div>
+
+                                            <div class="card-form" id="card-add-user-{{id}}">
+
+                                                <input class="card-input" id="input-name-enrolled-{{id}}" type="text"
+                                                    placeholder="Nombre del Alumno" onkeydown="suggestUsers(this.id)"
+                                                    onfocus="obtainUsers({{id}})">
+
+                                                <select id="selector-module-enrolled-{{id}}"
+                                                    class="selector-module-enrolled-{{id_laboratory}}">
+                                                    <option selected value="0">Mesa</option>
+                                                    {{#each ../../modules}}
+                                                    {{#if_eq ../../this.id id_laboratory}}
+                                                    <option value={{id}}>{{name_module}}</option>
+                                                    {{/if_eq}}
+                                                    {{/each}}
+                                                </select>
+
+                                                <select id="selector-schedulegroup-enrolled-{{id}}">
+                                                    <option selected value="0">Grupo Horario</option>
+                                                    {{#each ../../schedulesgroups}}
+                                                    {{#if_eq ../this.id id_course}}
+                                                    <option value={{id}}>{{name_schedulegroup}}
+                                                    </option>
+                                                    {{/if_eq}}
+                                                    {{/each}}
+                                                </select>
+
+                                                <div class="button-primary" onclick="enrollUser({{id}})">
+                                                    Añadir Usuario
+                                                </div>
+
+                                            </div>
+
+                                            <div class="card-form" id="card-add-schedulegroup-{{id}}">
+
+                                                <input class="card-input" type="text" placeholder="Nombre del Grupo Horario"
+                                                    id="input-name-schedulegroup-{{id}}">
+
+                                                <div class="button-primary" onclick="createScheduleGroup({{id}})">
+                                                    Añadir Grupo Horario
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="table-enrolleds-{{id}} table-hidden" id="table-enrolleds-{{id}}">
+                                        <td colspan="999">
+                                            <div>
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th>Código</th>
+                                                            <th>Nombres</th>
+                                                            <th>Apellidos</th>
+                                                            <th>Mesa</th>
+                                                            <th>Grupo Horario</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="body-table-enrolleds-{{id}}">
+                                                        {{#each ../../users}}
+                                                        {{#if_eq ../this.id id_course}}
+                                                        <tr id="row-table-enrolleds-{{id}}">
+                                                            <td>
+                                                                <div class="button-transparent">
+                                                                    <i class='bx bx-trash bx-tada-hover iconRed'
+                                                                        onclick="deleteEnrolled({{id}})"></i>
+                                                                </div>
+                                                            </td>
+                                                            <td>{{code_user}}</td>
+                                                            <td>{{names_user}}</td>
+                                                            <td>{{surnames_user}}</td>
+                                                            <td>{{name_module}}</td>
+                                                            <td>{{name_schedulegroup}}</td>
+                                                        </tr>
+                                                        {{/if_eq}}
+                                                        {{/each}}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="table-schedulesgroups-{{id}} table-hidden" id="table-schedulesgroups-{{id}}">
+                                        <td colspan="999">
+                                            <div>
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th>Grupo Horario</th>
+                                                            <th style="text-align: center;">Acciones</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="body-table-schedulesgroups-{{id}}">
+                                                        {{#each ../../schedulesgroups}}
+                                                        {{#if_eq ../this.id id_course}}
+                                                        <tr id="row-table-schedulesgroups-{{id}}">
+                                                            <td>
+                                                                <div class="button-transparent">
+                                                                    <i id="button-modify-schedulegroup-{{id}}"
+                                                                        style="color:green" class="far fa-edit"
+                                                                        onclick="modifyScheduleGroup({{id}})"></i>
+                                                                </div>
+                                                                <div class="button-transparent">
+                                                                    <i class='bx bx-trash bx-tada-hover iconRed'
+                                                                        onclick="deleteScheduleGroup({{id}})"></i>
+                                                                </div>
+                                                            </td>
+                                                            <td id="name-schedulegroup-{{id}}">{{name_schedulegroup}}</td>
+                                                            <td>
+                                                                <div class="container-elements-centered">
+                                                                    <div class="button-primary"
+                                                                        onclick="collapseTable('table-schedules-'+{{id}})">
+                                                                        <i class="fas fa-eye"></i> Horario(s)
+                                                                    </div>
+                                                                    <div class="button-primary"
+                                                                        onclick="collapseCard('card-add-schedule-'+{{id}})">
+                                                                        <i class="fas fa-plus-circle"></i> Horario
+                                                                    </div>
+                                                                </div>
+                                                                <div class="card-form" id="card-add-schedule-{{id}}">
+                                                                    <select id="selector-day-schedule-{{id}}">
+                                                                        <option selected value="0">Día
+                                                                        </option>
+                                                                        <option value="Lunes">Lunes
+                                                                        </option>
+                                                                        <option value="Martes">Martes
+                                                                        </option>
+                                                                        <option value="Miércoles">Miércoles
+                                                                        </option>
+                                                                        <option value="Jueves">Jueves
+                                                                        </option>
+                                                                        <option value="Viernes">Viernes
+                                                                        </option>
+                                                                        <option value="Sábado">Sábado
+                                                                        </option>
+                                                                        <option value="Domingo">Domingo
+                                                                        </option>
+                                                                    </select>
+
+                                                                    <div class="clockpicker" placement="bottom"
+                                                                        data-autoclose="true"
+                                                                        id="selector-starttime-schedule-{{id}}">
+                                                                        <label for="selector-starttime-schedule-{{id}}">Hora
+                                                                            Inicio</label>
+                                                                        <input class="card-input" type="text" value="00:00"
+                                                                            id="input-starttime-schedule-{{id}}">
+                                                                    </div>
+
+                                                                    <div class="clockpicker" placement="bottom"
+                                                                        data-autoclose="true"
+                                                                        id="selector-endtime-schedule-{{id}}">
+                                                                        <label for="selector-endtime-schedule-{{id}}">Hora
+                                                                            Fin</label>
+                                                                        <input class="card-input" type="text" value="00:00"
+                                                                            id="input-endtime-schedule-{{id}}">
+                                                                    </div>
+                                                                    <div class="button-primary"
+                                                                        onclick="createSchedule({{id}})">
+                                                                        Añadir Horario
+                                                                    </div>
+
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="table-hidden table-schedules-{{id}}"
+                                                            id="table-schedules-{{id}}">
+                                                            <td colspan="999">
+                                                                <div>
+                                                                    <table class="table table-striped">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th></th>
+                                                                                <th>Dia</th>
+                                                                                <th>Hora Inicio</th>
+                                                                                <th>Hora Fin</th>                                                                           
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody id="body-table-schedules-{{id}}">
+                                                                            {{#each ../../../daysandtimes}}
+                                                                            {{#if_eq ../this.id id_schedulegroup}}
+                                                                            <tr id="row-table-schedules-{{id}}">
+                                                                                <td class="container-elements-centered">
+                                                                                    <button type="submit"
+                                                                                        class="btn btnControlRed"
+                                                                                        onclick="deleteSchedule({{id}})">
+                                                                                        <i
+                                                                                            class='bx bx-trash bx-tada-hover iconRed'></i>
+                                                                                    </button>
+                                                                                </td>
+                                                                                <td>{{day_schedule}}</td>
+                                                                                <td>{{starttime_schedule}}
+                                                                                </td>
+                                                                                <td>{{endtime_schedule}}</td>                                                                            
+                                                                            </tr>
+                                                                            {{/if_eq}}
+                                                                            {{/each}}
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        {{/if_eq}}
+                                                        {{/each}}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {{/if_eq}}
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                {{!-- modules --}}
+                <tr class="table-modules-{{id}} table-hidden" id="table-modules-{{id}}">
+                    <td colspan="999">
+                        <div>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Mesa</th>
+                                        <th style="text-align: center;">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="body-table-modules-{{id}}">
+                                    {{#each ../modules}}
+                                    {{#if_eq ../this.id id_laboratory}}
+                                    <tr class="rows-table-modules-{{id}}" id="row-table-modules-{{id}}">
+                                        <td>
+                                            <div class="button-transparent">
+                                                <i id="button-modify-module-{{id}}" style="color:green" class="far fa-edit"
+                                                    onclick="modifyModule({{id}})"></i>
+                                            </div>
+                                            <div class="button-transparent">
+                                                <i class='bx bx-trash bx-tada-hover iconRed'
+                                                    onclick="deleteModule({{id}})"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                        <td id="name-module-{{id}}">{{name_module}}</td>
+                                        <td>
+                                            <div class="container-elements-centered">
+                                                <div class="button-primary"
+                                                    onclick="collapseTable('table-equipments-'+{{id}})">
+                                                    <i class="fas fa-eye"></i> Equipo(s)
+                                                </div>
+                                                <div class="button-primary"
+                                                    onclick="collapseCard('card-add-equipment-'+{{id}})">
+                                                    <i class="fas fa-plus-circle"></i> Equipo
+                                                </div>
+                                            </div>
+
+                                            <div class="card-form" id="card-add-equipment-{{id}}">
+
+                                                <input class="card-input" type="text" placeholder="Nombre del Equipo"
+                                                    id="input-name-equipment-{{id}}">
+
+
+                                                <input class="card-input" type="text" placeholder="Dirección IP"
+                                                    id="input-ip-equipment-{{id}}">
+
+
+                                                <input class="card-input" type="text" placeholder="Puerto" id="input-port-equipment-{{id}}">
+
+
+                                                <input class="card-input" type="text" placeholder="Ruta de Conexión"
+                                                    id="input-wsroute-equipment-{{id}}">
+
+                                                <input class="card-input" type="text" placeholder="Password"
+                                                    id="input-password-equipment-{{id}}">
+
+                                                <select id="selector-id-equipmenttype-{{id}}">
+                                                    <option selected value="0">Tipo</option>
+                                                    {{#each ../../equipmentstypes}}
+                                                    <option value={{id}}>{{name_equipmenttype}}</option>
+                                                    {{/each}}
+                                                </select>
+
+                                                <div class="button-primary" onclick="createEquipment({{id}})"> Añadir
+                                                    Equipo
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="table-hidden table-equipments-{{id}}" id="table-equipments-{{id}}">
+                                        <td colspan="999">
+                                            <div>
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th>Equipo</th>
+                                                            <th>Dirección IP</th>
+                                                            <th>Puerto</th>
+                                                            <th>Tipo de Equipo</th>
+                                                            <th>Ruta de Conexión</th>
+                                                            <th>Password</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="body-table-equipments-{{id}}">
+                                                        {{#each ../../equipments}}
+                                                        {{#if_eq ../this.id id_module}}
+                                                        <tr id="row-table-equipments-{{id}}">
+                                                            <td>
+                                                                <div class="button-transparent">
+                                                                    <i id="button-modify-equipment-{{id}}"
+                                                                        style="color:green" class="far fa-edit"
+                                                                        onclick="modifyEquipment({{id}})"></i>
+                                                                </div>
+                                                                <div class="button-transparent">
+                                                                    <i class='bx bx-trash bx-tada-hover iconRed'
+                                                                        onclick="deleteEquipment({{id}})"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </td>
+                                                            <td id="name-equipment-{{id}}">
+                                                                {{name_equipment}}</td>
+                                                            <td id="ip-equipment-{{id}}">
+                                                                {{ip_equipment}}
+                                                            </td>
+                                                            <td id="port-equipment-{{id}}">
+                                                                {{port_equipment}}</td>
+                                                            <td>{{name_equipmenttype}}</td>
+                                                            <td>{{connectionroute_equipment}}</td>
+                                                            <td id="password-equipment-{{id}}">
+                                                                {{password_equipment}}
+                                                            </td>
+                                                        </tr>
+                                                        {{/if_eq}}
+                                                        {{/each}}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {{/if_eq}}
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+  
+</div>
+
+<script type="text/javascript" src="/js/bootstrap-clockpicker.min.js"></script>
+<script src="/js/utils-adminlaboratorios.js"></script>

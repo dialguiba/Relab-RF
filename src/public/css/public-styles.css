@@ -1,0 +1,179 @@
+/* PRINCIPAL INDEX */
+
+/*
+ * Base structure
+ */
+ @import url('https://fonts.googleapis.com/css?family=Roboto');
+
+html,
+body {
+  height: 100%; 
+  font-family: 'Roboto', sans-serif;
+  background: url(/img/background.jpg) no-repeat center center fixed;
+  background-size: cover;
+}
+
+body {
+  display: -ms-flexbox;
+  display: flex;
+  color: #fff;
+  text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
+  box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+}
+
+.cover-container {
+  max-width: 50em;
+}
+
+/*
+ * Header
+ */
+.masthead {
+  
+  margin-bottom: 2rem;
+}
+
+.masthead-brand {
+  
+  margin-bottom: 0;
+}
+
+.nav-masthead .nav-link {
+  
+  padding: .25rem 0;
+  font-weight: 700;
+  color: rgba(255, 255, 255, .5);
+  background-color: transparent;
+  border-bottom: .25rem solid transparent;
+}
+
+.nav-masthead .nav-link:hover,
+.nav-masthead .nav-link:focus {
+  
+  border-bottom-color: rgba(255, 255, 255, .25);
+}
+
+.nav-masthead .nav-link + .nav-link {
+  margin-left: 1rem;
+}
+
+.nav-masthead .active {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+@media (min-width: 48em) {
+  .masthead-brand {
+    float: left;
+  }
+  .nav-masthead {
+    float: right;
+  }
+}
+
+
+/*
+ * Cover
+ */
+.cover {
+  padding: 0 1.5rem;
+}
+.cover .btn-lg {
+  padding: .75rem 1.25rem;
+  font-weight: 700;
+}
+
+
+/*
+ * Footer
+ */
+.mastfoot {
+  
+  color: rgba(255, 255, 255, .5);
+}
+
+
+
+
+/* */
+
+
+.main-section {
+	margin: 0 auto;
+	margin-top: 150px;
+	padding: 0;
+}
+.modal-content {
+	background-color: #33495e;
+	opacity: .85;
+}
+.user-img {
+	margin-top: -50px;
+	margin-bottom: 10px;
+}
+.user-img img {
+	height: 100px;
+	width: 100px;
+}
+
+.form-input button {
+	width: 32%;
+	margin-bottom: 20px;
+	border-radius: .5em;
+}
+
+/* @INICIO@ BOTON DEL LOGIN */
+
+.btn-login {	
+	background-color: #11BAAC;
+	border-radius: 1;
+	padding: .7rem;
+}
+
+.btn-login:hover {	
+	background-color: #058C92;
+	border-radius: 1;
+	padding: .7rem;
+}
+
+/* @FIN@ BOTON DEL LOGIN */
+
+
+.link-part {
+	padding: 5px 0 20px;
+}
+.link-part a {
+	color: #bfe4ec;
+}
+
+
+
+.md-form.md-outline label.active {
+  background-color: #33495e;
+}
+
+.prefix {
+  color: #757575;
+}
+
+#inputIconEx1{
+	color:#058C92;	
+}
+
+#inputIconEx11{
+	color:#058C92;	
+}
+
+.input_login:-webkit-autofill { 
+  -webkit-box-shadow: 0 0 0px 1000px #33495e inset; 
+  -webkit-text-fill-color: #058C92;
+  box-shadow: inset 0 0 0px 1000px #33495e; 
+}
+.input_login:-webkit-autofill:focus {
+	-webkit-box-shadow: 0 0 0px 1000px #33495e inset;
+	box-shadow: inset 0 0 0px 1000px #33495e; 
+} 
+
+
+
+

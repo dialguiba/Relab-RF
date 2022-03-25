@@ -1,0 +1,107 @@
+<table class="table table-responsive-md table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Código</th>
+      <th>Nombres</th>
+      <th>Apellidos</th>
+      <th>Correo</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  {{#each users}}
+  <tbody>
+    <tr>
+      <td>{{counter @index}}</td>
+      <td>{{code_user}}</td>
+      <td>{{names_user}}</td>
+      <td>{{surnames_user}}</td>
+      <td>{{email_user}}</td>
+      <td>
+        <button class="btn btn-primary" data-toggle="collapse" id="table{{counter @index}}"
+          data-target=".table{{counter @index}}">Ver courses</button>
+        <button class="btn btn-primary" type="button" data-toggle="collapse"
+          data-target="#collapseaddcurso{{counter @index}}" aria-expanded="false"
+          aria-controls="collapseaddcurso{{counter @index}}">+Curso</button>
+
+        <div class="collapse" id="collapseaddcurso{{counter @index}}">
+          <div class="card card-body">
+
+            <form action="/admin/crearcurso" method="POST" class="form-inline d-flex justify-content-center">
+              <div class="form-group mx-sm-2 mb-1">
+                <select name="id_course" class="custom-select custom-select-sm"
+                  id="selectorCurso_adminalumnos{{counter @index}}" onchange="func({{counter @index}})">
+                  <option selected value="0">Curso</option>
+                  {{#each ../courses}}
+                  <option value={{id}}>{{name_course}}</option>
+                  {{/each}}
+                </select>
+              </div>
+              <div class="form-group mx-sm-2 mb-1">
+                <select name="id_module" class="custom-select custom-select-sm"
+                  id="selectorMesa_adminalumnos{{counter @index}}">
+                  <option selected value="0">Mesa</option>
+                </select>
+              </div>
+              <div class="form-group mx-sm-2 mb-1">
+                <select name="id_schedulegroup" class="custom-select custom-select-sm"
+                  id="selectorGrupoHorario_adminalumnos{{counter @index}}">
+                  <option selected value="0">Grupo Horario</option>
+                </select>
+              </div>
+              <div class="form-group mx-sm-2 mb-1">
+                <button class="btn btn-success ">Añadir Curso</button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </td>
+
+    </tr>
+    <tr class="collapse table{{counter @index}}">
+      <td colspan="999">
+        <div>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Curso</th>
+                <th>Mesa</th>
+                <th>Grupo Horario</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              {{#each ../enrolleds}}
+              {{#if_eq ../this.id id_user}}
+
+              <tr>
+                <td>{{name_course}}</td>
+                <td>{{name_module}}</td>
+                <td data-toggle="tooltip" data-html="true" data-placement="left" title="
+               
+               {{#each ../../gruposhorariosydiasyhoras}}
+                  {{#if_eq ../this.id_schedulegroup id_schedulegroup}}
+                     {{day_schedule}}
+                     {{starttime_schedule}}
+                     {{endtime_schedule}}
+               {{/if_eq}}
+               {{/each}}<br>
+               {{!-- <em>Tooltip</em> <u>with</u> <br><br>HTML</br></br> --}}
+               
+               
+               ">{{name_schedulegroup}}</td>
+
+              </tr>
+              {{/if_eq}}
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+  {{/each}}
+
+</table>

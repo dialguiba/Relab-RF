@@ -1,0 +1,73 @@
+<tr class="rows-table-modules-{{idNewModule}}" id="row-table-modules-{{idNewModule}}">
+    <td>
+        <div class="button-transparent">
+            <i id="button-modify-module-{{idNewModule}}" style="color:green" class="far fa-edit"
+                onclick="modifyModule({{idNewModule}})"></i>
+        </div>
+        <div class="button-transparent">
+            <i class='bx bx-trash bx-tada-hover iconRed' onclick="deleteModule({{idNewModule}})"></i>
+            </button>
+        </div>
+    </td>
+    <td id="name-module-{{idNewModule}}">{{nameModule}}</td>
+    <td>
+        <div class="container-elements-centered">
+            <div class="button-primary" onclick="collapseTable('table-equipments-'+{{idNewModule}})">
+                <i class="fas fa-eye"></i> Equipo(s)
+            </div>
+            <div class="button-primary" onclick="collapseCard('card-add-equipment-'+{{idNewModule}})">
+                <i class="fas fa-plus-circle"></i> Equipo
+            </div>
+        </div>
+
+        <div class="card-form" id="card-add-equipment-{{idNewModule}}">
+
+            <input class="card-input" type="text" placeholder="Nombre del Equipo" id="input-name-equipment-{{idNewModule}}">
+
+
+            <input class="card-input" type="text" placeholder="Dirección IP" id="input-ip-equipment-{{idNewModule}}">
+
+
+            <input class="card-input" type="text" placeholder="Puerto" id="input-port-equipment-{{idNewModule}}">
+
+
+            <input class="card-input" type="text" placeholder="Websocket" id="input-wsroute-equipment-{{idNewModule}}">
+
+            <input class="card-input" type="text" placeholder="Password" id="input-password-equipment-{{idNewModule}}">
+
+            <select id="selector-id-equipmenttype-{{idNewModule}}">
+                <option selected value="0">Tipo</option>
+                {{#each equipmentsTypes}}
+                <option value={{id}}>{{name_equipmenttype}}</option>
+                {{/each}}
+            </select>
+
+            <div class="button-primary" onclick="createEquipment({{idNewModule}})"> Añadir
+                Equipo
+            </div>
+
+        </div>
+    </td>
+</tr>
+
+<tr class="table-hidden table-equipments-{{idNewModule}}" id="table-equipments-{{idNewModule}}">
+    <td colspan="999">
+        <div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Equipo</th>
+                        <th>Dirección IP</th>
+                        <th>Puerto</th>                        
+                        <th>Tipo de Equipo</th>
+                        <th>Ruta de Conexión</th>
+                        <th>Password</th>
+                    </tr>
+                </thead>
+                <tbody id="body-table-equipments-{{idNewModule}}">
+                </tbody>
+            </table>
+        </div>
+    </td>
+</tr>

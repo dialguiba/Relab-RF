@@ -1,0 +1,87 @@
+{{!--
+<link rel='stylesheet' href="/css/styles-admin.css"> --}}
+<link href="/css/styles-equipmentstypes.css" rel='stylesheet'>
+<div>
+    <div id="card-centered">
+        <div class="card-form">
+            <div class="form-title">Añadir Tipo de Equipo</div>
+            <div class="form-body">
+                <div class="row">
+                    <input class="card-input" required name="nombre_tipoEquipo" type="text"
+                        id="input-name-equipmenttype" placeholder="Nombre del tipo de equipo">
+                </div>
+                <div class="row">
+                    <select id="selector-connectiontype" name="idConnectionType">
+                        {{#each connectiontypes}}
+                        <option value={{id}}>{{name_connectiontype}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="row">
+                    <p>Seleccione una imagen para el tipo de equipo:</p>
+                    <div class="images-selector" id="selector-image-equipmenttype">
+                        {{#each imagesequipmentstypes}}
+                        <div>
+                            <input type="radio" id="{{name_imageequipmenttype}}" name="radioName" value={{id}}>
+                            <label for="{{name_imageequipmenttype}}" class="img-card"
+                                style="background-image:url(/img/equipmentstypes/{{name_imageequipmenttype}}.png)"></label>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+            <div class="rule"></div>
+            <div class="form-footer">
+                <button class="btn btn-primary" onclick="createEquipmentType()">Añadir</button>
+            </div>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Acciones</th>
+                <th>Nombre de tipo de equipo</th>
+                <th>Tipo de Conexión</th>
+                <th>Imagen</th>
+            </tr>
+        </thead>
+        <tbody id="body-table-equipmentstypes">
+            {{#each equipmentstypes}}
+            <tr id="row-table-equipmentstypes-{{id}}">
+                <td>
+                    <div class="button-transparent">
+                        <i id="button-modify-equipmenttype-{{id}}" style="color:green" class="far fa-edit"
+                            onclick="modifyEquipmentType({{id}})"></i>
+                    </div>
+                    <div class="button-transparent">
+                        <i class='bx bx-trash bx-tada-hover iconRed' onclick="deleteEquipmentType({{id}})"></i>
+                    </div>
+                </td>
+                <td id="name-equipmenttype-{{id}}">{{name_equipmenttype}}</td>
+                <td>
+                    <span id="name-connectiontype-{{id}}">{{name_connectiontype}}</span>
+                    <select style="display:none" id="selector-connectiontype-{{id}}" name="idConnectionType">
+                        {{#each ../connectiontypes}}
+                        {{#if_eq id ../id_connectiontype}}
+                        <option selected value={{id}}>{{name_connectiontype}}</option>
+                        {{else}}
+                        <option value={{id}}>{{name_connectiontype}}</option>
+                        {{/if_eq}}
+                        {{/each}}
+                    </select>
+                </td>
+
+                <td style="width:10%"><img style="width:100%"
+                        src="/img/equipmentstypes/{{name_imageequipmenttype}}.png " />
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+
+
+
+<script src="/js/admin/utils-equipmentstypes.js"></script>
